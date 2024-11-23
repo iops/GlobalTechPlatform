@@ -1,4 +1,3 @@
-# environments/dev/variables.tf
 variable "aws_region" {
   description = "AWS region"
   type        = string
@@ -8,23 +7,30 @@ variable "aws_region" {
 variable "environment" {
   description = "Environment name"
   type        = string
-  validation {
-    condition     = contains(["dev", "staging", "prod"], var.environment)
-    error_message = "Environment must be dev, staging, or prod."
-  }
 }
 
 variable "vpc_cidr" {
-  description = "CIDR block for the VPC"
+  description = "CIDR block for VPC"
   type        = string
+  default     = "10.0.0.0/16"
 }
-
-# Add any other variables you need
 
 variable "az_count" {
   description = "Number of AZs to use"
   type        = number
-  default     = 3
+  default     = 1
+}
+
+variable "single_nat_gateway" {
+  description = "Use a single NAT Gateway instead of one per AZ"
+  type        = bool
+  default     = false
+}
+
+variable "enable_ssm_endpoints" {
+  description = "Enable SSM related VPC endpoints"
+  type        = bool
+  default     = true
 }
 
 variable "tags" {

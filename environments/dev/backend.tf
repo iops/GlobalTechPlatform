@@ -1,7 +1,8 @@
+# Backend was created by bootstrap
 terraform {
   backend "s3" {
     bucket         = "tf-terraform-state-639814259325"
-    key            = "terraform.tfstate"
+    key            = "dev/terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "tf-terraform-lock"
     encrypt        = true
